@@ -13,19 +13,6 @@ self: super: {
       # JS ERROR: Error: Requiring ModemManager, version none: Typelib file for namespace 'ModemManager' (any version) not found
       # @resource:///org/gnome/shell/misc/modemManager.js:4:49
       buildInputs = old.buildInputs ++ [ super.modemmanager ];
-      postPatch = ''
-        patchShebangs src/data-to-c.pl
-
-        # We can generate it ourselves.
-        rm -f man/gnome-shell.1
-
-        # Build fails with -Dgtk_doc=true
-        # https://gitlab.gnome.org/GNOME/gnome-shell/-/issues/6486
-        # element include: XInclude error : could not load xxx, and no fallback was found
-        substituteInPlace docs/reference/shell/shell-docs.sgml \
-          --replace '<xi:include href="xml/shell-embedded-window.xml"/>' ' ' \
-          --replace '<xi:include href="xml/shell-gtk-embed.xml"/>' ' '
-      '';
     });
     gnome-shell-devel = gself.gnome-shell.overrideAttrs (old: {
       version = "unstable-2023-10-22";

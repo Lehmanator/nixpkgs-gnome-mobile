@@ -13,6 +13,10 @@ self: super: {
       # JS ERROR: Error: Requiring ModemManager, version none: Typelib file for namespace 'ModemManager' (any version) not found
       # @resource:///org/gnome/shell/misc/modemManager.js:4:49
       buildInputs = old.buildInputs ++ [ super.modemmanager ];
+      postPatch = ''
+        patchShebangs src/data-to-c.pl
+        rm -f man/gnome-shell.1
+      '';
     });
     gnome-shell-devel = gself.gnome-shell.overrideAttrs (old: {
       version = "45.2-mobile-devel";
@@ -24,6 +28,10 @@ self: super: {
         hash = "sha256-b9TJlePcBi9njlly7Qx5UpfLj9pbTQUaB9rztNcnUMA=";
         fetchSubmodules = true;
       };
+      postPatch = ''
+        patchShebangs src/data-to-c.pl
+        rm -f man/gnome-shell.1
+      '';
     });
 
     mutter = gsuper.mutter.overrideAttrs (old: {

@@ -1,7 +1,7 @@
 self: super: {
   gnome = super.gnome.overrideScope' (gself: gsuper: {
     gnome-shell = gsuper.gnome-shell.overrideAttrs (old: {
-      version = "unstable-2023-09-08";
+      version = "45.2-mobile";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
@@ -15,7 +15,7 @@ self: super: {
       buildInputs = old.buildInputs ++ [ super.modemmanager ];
     });
     gnome-shell-devel = gself.gnome-shell.overrideAttrs (old: {
-      version = "unstable-2023-10-22";
+      version = "45.2-mobile-devel";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
@@ -27,7 +27,7 @@ self: super: {
     });
 
     mutter = gsuper.mutter.overrideAttrs (old: {
-      version = "unstable-2023-09-08";
+      version = "45.2-mobile";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
@@ -37,7 +37,7 @@ self: super: {
       };
     });
     mutter-devel = gself.mutter.overrideAttrs (old: {
-      version = "unstable-2023-10-22";
+      version = "45.2-mobile-devel";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";

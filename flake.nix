@@ -176,7 +176,7 @@
           default = gnome-mobile;
         };
         nixosModules = rec {
-          gnome-mobile = import ./module.nix;
+          gnome-mobile = import ./nixosModules/gnome-mobile.nix;
           default = gnome-mobile;
         };
       };

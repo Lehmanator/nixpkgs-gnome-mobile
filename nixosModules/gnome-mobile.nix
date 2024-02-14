@@ -1,23 +1,31 @@
-{ config, lib, pkgs, ... }:
-
 {
-  nixpkgs.overlays = [ (import ./overlay.nix) ];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  nixpkgs.overlays = [(import ../overlays/gnome-mobile.nix)];
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" ];
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome = {
-    enable = true;
-    # One app per workspace
-    extraGSettingsOverrides = ''
-      [org.gnome.mutter]
-      dynamic-workspaces=true
-    '';
-    extraGSettingsOverridePackages = [ pkgs.gnome.mutter ];
+  services = {
+    logind = {
+      powerKey = "ignore";
+      powerKeyLongPress = "poweroff";
+    };
+    xserver = {
+      enable = true;
+      videoDrivers = ["modesetting"];
+      displayManager.gdm.enable = true;
+      desktopManager.gnome = {
+        enable = true;
+        # One app per workspace
+        extraGSettingsOverrides = ''
+          [org.gnome.mutter]
+          dynamic-workspaces=true
+        '';
+        extraGSettingsOverridePackages = [pkgs.gnome.mutter];
+      };
+    };
   };
-
-  services.logind.powerKey = "ignore";
-  services.logind.powerKeyLongPress = "poweroff";
 
   # Installed by default but not mobile friendly yet
   environment.gnome.excludePackages = with pkgs.gnome; [

@@ -12,7 +12,7 @@ self: super: {
       };
       # JS ERROR: Error: Requiring ModemManager, version none: Typelib file for namespace 'ModemManager' (any version) not found
       # @resource:///org/gnome/shell/misc/modemManager.js:4:49
-      buildInputs = old.buildInputs ++ [ super.modemmanager ];
+      buildInputs = old.buildInputs ++ [super.modemmanager];
       postPatch = ''
         patchShebangs src/data-to-c.pl
         rm -f man/gnome-shell.1
@@ -25,7 +25,7 @@ self: super: {
         owner = "verdre";
         repo = "mobile-shell";
         rev = "259e12cfbe7060cdf63e106d275c0ee0d0158906";
-        hash = lib.fakeHash; #"sha256-b9TJlePcBi9njlly7Qx5UpfLj9pbTQUaB9rztNcnUMA=";
+        hash = "sha256-h3Qk1VhQDuXU9Y46hOMgO6OlYpdNIylIhLCroE5YTak=";
         fetchSubmodules = true;
       };
       postPatch = ''
@@ -51,9 +51,8 @@ self: super: {
         owner = "verdre";
         repo = "mobile-mutter";
         rev = "742ac7a4fe1cacb1ff1ee21f132947c19b9498b7";
-        hash = lib.fakeHash; #"sha256-D9TWF09XhqfBZyKXiPaQE+Fa+3mKG2CAdyi8nAsYa+c=";
+        hash = "sha256-RxLJszk1smR/OwotK8pjSB1mgAVv+iWUFsSV1h3SuT8=";
       };
     });
   });
 }
-

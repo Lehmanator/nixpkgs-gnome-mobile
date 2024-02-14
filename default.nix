@@ -1,1 +1,1 @@
-import <nixpkgs> { overlays = [ (import ./overlay.nix) ]; }
+import <nixpkgs> { overlays = [ (import ./overlays/gnome-mobile.nix) ]; }

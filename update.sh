@@ -1,4 +1,12 @@
-#!/usr/bin/env nix-shell
+#!/usr/bin/env nix
+#! nix shell nixpkgs#coreutils nixpkgs#common-updater-scripts nixpkgs#git nixpkgs#bashInteractive --command bash
+
+echo "----- GNOME Mobile -----"
+#! nix shell nixpkgs/nixos-unstable#coreutils nixpkgs/nixos-unstable#common-updater-scripts nixpkgs/nixos-unstable#git nixpkgs/nixos-unstable#bashInteractive --command bash
+#
+
+
+# --- old hashbang ---
 #!nix-shell -i bash -p coreutils common-updater-scripts git
 
 tmpdir="$(mktemp -d)"

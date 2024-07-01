@@ -1,10 +1,15 @@
 {
   description = "A Nix-flake to provide GNOME packages via overlay or nixosModule";
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-  outputs = { self, ... }: {
-    overlays.default = import ./overlay.nix;
-    nixosModules.gnome-mobile = import ./module.nix;
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flakelight.url = "github:nix-community/flakelight";
   };
+  outputs = { self, flakelight, ... }@inputs: flakelight ./. ({lib, ...}: {
+    inherit inputs;
+    systems = lib.systems.flakeExposed;
+    nixDir = ./.;
+  });
+
   nixConfig = {
     connect-timeout = 10;
     substituters = [

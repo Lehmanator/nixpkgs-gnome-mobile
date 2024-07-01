@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  nixpkgs.overlays = [ (import ./overlay.nix) ];
+  nixpkgs.overlays = [ (import ../overlays/gnome-mobile.nix) ];
 
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "modesetting" ];

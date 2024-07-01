@@ -2,12 +2,19 @@
   description = "A Nix-flake to provide GNOME packages via overlay or nixosModule";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-gnome-apps.url = "github:chuangzhu/nixpkgs-gnome-apps";
     flakelight.url = "github:nix-community/flakelight";
   };
   outputs = { self, flakelight, ... }@inputs: flakelight ./. ({lib, ...}: {
     inherit inputs;
     systems = lib.systems.flakeExposed;
     nixDir = ./.;
+    overlays.nixpkgs-gnome-apps = inputs.nixpkgs-gnome-apps.overlays.default;
+    outputs = {
+      inherit inputs;
+      inherit lib;
+      inherit (inputs.nixpkgs-gnome-apps) packages;
+    };
   });
 
   nixConfig = {

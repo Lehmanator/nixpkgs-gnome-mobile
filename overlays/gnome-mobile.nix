@@ -1,13 +1,13 @@
 self: super: {
   gnome = super.gnome.overrideScope' (gself: gsuper: {
     gnome-shell = gsuper.gnome-shell.overrideAttrs (old: {
-      version = "unstable-2023-09-08";
+      version = "unstable-2024-04-29";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
         repo = "mobile-shell";
-        rev = "df3f6b4c512d2f181e86ff7f6b1646ce7b907344";
-        hash = "sha256-s47z1q+MZWogT99OkzgQxKrqFT4I0yXyfGSww1IaaFs=";
+        rev = "b157a30ad43865e41e6cf5a632390d630b5a40df";
+        hash = "sha256-DGz9TGgKs40Vx6FKZ5lsaAUtjEn61ZzRpF3UEP68PKM=";
         fetchSubmodules = true;
       };
       # JS ERROR: Error: Requiring ModemManager, version none: Typelib file for namespace 'ModemManager' (any version) not found
@@ -15,19 +15,19 @@ self: super: {
       buildInputs = old.buildInputs ++ [ super.modemmanager ];
     });
     gnome-shell-devel = gself.gnome-shell.overrideAttrs (old: {
-      version = "unstable-2023-10-22";
+      version = "unstable-2024-05-14";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
         repo = "mobile-shell";
-        rev = "58146d2cce4f81a2eb2de0721bb730040f0e6118";
-        hash = "sha256-b9TJlePcBi9njlly7Qx5UpfLj9pbTQUaB9rztNcnUMA=";
+        rev = "ab6658f592937d46a8d428c39c3d2a98cf9063ea";
+        hash = "sha256-dMTBY87e6g1QsYFi6PnCXD6NLDdg0/3iJ1Bk7ObIY4U=";
         fetchSubmodules = true;
       };
     });
 
     mutter = gsuper.mutter.overrideAttrs (old: {
-      version = "unstable-2023-09-08";
+      version = "unstable-2023-09-05";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
@@ -37,13 +37,13 @@ self: super: {
       };
     });
     mutter-devel = gself.mutter.overrideAttrs (old: {
-      version = "unstable-2023-10-22";
+      version = "unstable-2024-05-06";
       src = super.fetchFromGitLab {
         domain = "gitlab.gnome.org";
         owner = "verdre";
         repo = "mobile-mutter";
-        rev = "2c538763f7cdcd8dec29fbf602b930c60862f019";
-        hash = "sha256-D9TWF09XhqfBZyKXiPaQE+Fa+3mKG2CAdyi8nAsYa+c=";
+        rev = "9481723b9c1526ae89b4628573acbd06417bba2f";
+        hash = "sha256-MRdsCRDR/x0KBo1F9bHc8TE085J1nAmFZ8xh4ZVDqNE=";
       };
     });
   });
